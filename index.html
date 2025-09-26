@@ -20,7 +20,7 @@
       display: inline-block;
       padding-bottom: 6px;
       font-size: 2rem;
-      color: #222;
+      color: #e5e7eb;
       text-decoration: none;
     }
     .underlinea::after {
@@ -33,6 +33,10 @@
       background: #e5e7eb;
       transition: width 900ms cubic-bezier(.2,.9,.2,1);
     }
+    .underlinea:hover::after {
+      width: 100%;
+    }
+
     body.loaded .underlinea::after {
       width: 100%;
     }
@@ -131,6 +135,9 @@
   </div>
 </body>
 <script>
+  window.addEventListener("load", () => {
+    document.body.classList.add("loaded");
+  });
   const status = 'free';
   let statusBox = document.getElementById("status");
   let statusText = document.getElementById("status-text");
