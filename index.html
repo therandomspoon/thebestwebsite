@@ -56,6 +56,27 @@
     h1 {
       margin-left: 10px;
     }
+    .status {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 247, 167, 0.12);
+      border: 1px solid rgba(0, 247, 167, 0.4);
+      border-radius: 999px;
+      padding: 8px 16px;
+      font-weight: 700;
+      color: #6efacc;
+      font-family: "Montserrat", sans-serif;
+      font-size: 1rem;
+      box-shadow: 0 0 12px rgba(0, 247, 167, 0.3);
+    }
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #00f7a7;
+      box-shadow: 0 0 8px #00f7a7;
+    }
   </style>
 </head>
 <body>
@@ -67,7 +88,10 @@
   </div>
   <div class="box">
     <h1 class="underline">Availability</h1>
-    <p id="button"></p>
+      <div id="status" class="status">
+        <span class="status-dot"></span>
+        <span id="status-text">Available Now!</span>
+      </div>
   </div>
   <div class="box">
     <h1>Pricing</h1>
@@ -83,25 +107,34 @@
 </body>
 <script>
   const status = 'free';
-  let available = document.getElementById("button");
+  let statusBox = document.getElementById("status");
+  let statusText = document.getElementById("status-text");
+  let dot = statusBox.querySelector(".status-dot");
   switch (status) {
     case 'free':
-      available.textContent = "Available Now!";
-      available.style.backgroundColor = "rgba(0, 247, 167, 0.12)";
-      available.style.padding = "10px";
-      available.style.borderRadius = "6px";
+      statusText.textContent = "Available Now!";
+      statusBox.style.background = "rgba(0, 247, 167, 0.12)";
+      statusBox.style.borderColor = "rgba(0, 247, 167, 0.4)";
+      statusText.style.color = "#6efacc";
+      dot.style.background = "#00f7a7";
+      dot.style.boxShadow = "0 0 8px #00f7a7";
       break;
     case 'booked':
-      available.textContent = "Currently booked";
-      available.style.backgroundColor = "rgba(247, 67, 67, 0.2)";
-      available.style.padding = "10px";
-      available.style.borderRadius = "6px";
+      statusText.textContent = "Currently Booked";
+      statusBox.style.background = "rgba(247, 67, 67, 0.12)";
+      statusBox.style.borderColor = "rgba(247, 67, 67, 0.4)";
+      statusText.style.color = "#ff7b7b";
+      dot.style.background = "#f74343";
+      dot.style.boxShadow = "0 0 8px #f74343";
       break;
     default:
-      available.textContent = "Status currently unavailable";
-      available.style.backgroundColor = "rgba(255, 200, 0, 0.2)";
-      available.style.padding = "10px";
-      available.style.borderRadius = "6px";
+      statusText.textContent = "Status Unknown";
+      statusBox.style.background = "rgba(255, 200, 0, 0.12)";
+      statusBox.style.borderColor = "rgba(255, 200, 0, 0.4)";
+      statusText.style.color = "#ffd85e";
+      dot.style.background = "#ffc800";
+      dot.style.boxShadow = "0 0 8px #ffc800";
       break;
   }
 </script>
+
