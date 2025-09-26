@@ -7,14 +7,25 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <style>
     :root {
       --bg: #070b14;     
     }
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -1;
+    }
     body {
       color: #e5e7eb; 
-      background: radial-gradient(800px 600px at 120% 10%, #0f1f2d 0%, transparent 55%),var(--bg);
+      background: radial-gradient(800px 600px at 120% 10%, #0f1f2d 0%, transparent 55%), var(--bg);
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
     }
+
     .underlinea {
       position: relative;
       display: inline-block;
@@ -57,6 +68,7 @@
     body.loaded .underlinea::after {
       width: 100%;
     }
+
     header {
       font-family: "Montserrat", sans-serif;
       font-optical-sizing: auto;
@@ -126,6 +138,7 @@
   </style>
 </head>
 <body>
+  <div id="particles-js"></div>
   <header>
     <h1>Want to have TheBestWebsite? <span class="underlinea">Rent it!</span></h1>
   </header>
@@ -150,40 +163,103 @@
       <li><span class="underlineb">365 days (1 year) - £170.00 GBP (£12.5p discount!)</span></li>
     </ul>
   </div>
-</body>
-<script>
-  window.addEventListener("load", () => {
-    document.body.classList.add("loaded");
-  });
-  const status = 'free';
-  let statusBox = document.getElementById("status");
-  let statusText = document.getElementById("status-text");
-  let dot = statusBox.querySelector(".status-dot");
-  switch (status) {
-    case 'free':
-      statusText.textContent = "Available Now!";
-      statusBox.style.background = "rgba(0, 247, 167, 0.12)";
-      statusBox.style.borderColor = "rgba(0, 247, 167, 0.4)";
-      statusText.style.color = "#6efacc";
-      dot.style.background = "#00f7a7";
-      dot.style.boxShadow = "0 0 8px #00f7a7";
-      break;
-    case 'booked':
-      statusText.textContent = "Currently Booked";
-      statusBox.style.background = "rgba(247, 67, 67, 0.12)";
-      statusBox.style.borderColor = "rgba(247, 67, 67, 0.4)";
-      statusText.style.color = "#ff7b7b";
-      dot.style.background = "#f74343";
-      dot.style.boxShadow = "0 0 8px #f74343";
-      break;
-    default:
-      statusText.textContent = "Status Unknown";
-      statusBox.style.background = "rgba(255, 200, 0, 0.12)";
-      statusBox.style.borderColor = "rgba(255, 200, 0, 0.4)";
-      statusText.style.color = "#ffd85e";
-      dot.style.background = "#ffc800";
-      dot.style.boxShadow = "0 0 8px #ffc800";
-      break;
-  }
-</script>
 
+  <script>
+    window.addEventListener("load", () => {
+      document.body.classList.add("loaded");
+    });
+
+    const status = 'free';
+    let statusBox = document.getElementById("status");
+    let statusText = document.getElementById("status-text");
+    let dot = statusBox.querySelector(".status-dot");
+
+    switch (status) {
+      case 'free':
+        statusText.textContent = "Available Now!";
+        statusBox.style.background = "rgba(0, 247, 167, 0.12)";
+        statusBox.style.borderColor = "rgba(0, 247, 167, 0.4)";
+        statusText.style.color = "#6efacc";
+        dot.style.background = "#00f7a7";
+        dot.style.boxShadow = "0 0 8px #00f7a7";
+        break;
+      case 'booked':
+        statusText.textContent = "Currently Booked";
+        statusBox.style.background = "rgba(247, 67, 67, 0.12)";
+        statusBox.style.borderColor = "rgba(247, 67, 67, 0.4)";
+        statusText.style.color = "#ff7b7b";
+        dot.style.background = "#f74343";
+        dot.style.boxShadow = "0 0 8px #f74343";
+        break;
+      default:
+        statusText.textContent = "Status Unknown";
+        statusBox.style.background = "rgba(255, 200, 0, 0.12)";
+        statusBox.style.borderColor = "rgba(255, 200, 0, 0.4)";
+        statusText.style.color = "#ffd85e";
+        dot.style.background = "#ffc800";
+        dot.style.boxShadow = "0 0 8px #ffc800";
+        break;
+    }
+
+    particlesJS('particles-js', {
+      particles: {
+        number: {
+          value: 50,
+          density: {
+            enable: true,
+            value_area: 800
+          }
+        },
+        color: {
+          value: "#ffffff"
+        },
+        shape: {
+          type: "circle",
+        },
+        opacity: {
+          value: 0.5,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 1,
+            opacity_min: 0.1,
+            sync: false
+          }
+        },
+        size: {
+          value: 3,
+          random: true,
+          anim: {
+            enable: true,
+            speed: 3,
+            size_min: 0.1,
+            sync: false
+          }
+        },
+        move: {
+          enable: true,
+          speed: 1,
+          direction: "random",
+          random: true,
+          straight: false,
+          out_mode: "out"
+        }
+      },
+      interactivity: {
+        detect_on: "window",
+        events: {
+          onhover: {
+            enable: true,
+            mode: "repulse"
+          },
+          onclick: {
+            enable: true,
+            mode: "push"
+          }
+        }
+      },
+      retina_detect: true
+    });
+  </script>
+</body>
+</html>
