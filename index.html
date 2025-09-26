@@ -25,7 +25,6 @@
       margin-top: 56px;
       margin-bottom: 56px;
       padding: 10px;
-      argin-right: auto;
       max-width: 75%;
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(6px) saturate(150%) contrast(120%) brightness(95%);
@@ -51,7 +50,8 @@
       max-width: 75%;
     }
     .underline {
-      border-bottom: 5px #e5e7eb;     
+      border-bottom: 5px solid #e5e7eb;
+      padding-bottom: 4px;
     }
     h1 {
       margin-left: 10px;
@@ -67,6 +67,7 @@
   </div>
   <div class="box">
     <h1 class="underline">Availability</h1>
+    <p id="button"></p>
   </div>
   <div class="box">
     <h1>Pricing</h1>
@@ -80,3 +81,27 @@
     </ul>
   </div>
 </body>
+<script>
+  const status = 'free';
+  let available = document.getElementById("button");
+  switch (status) {
+    case 'free':
+      available.textContent = "Available Now!";
+      available.style.backgroundColor = "rgba(0, 247, 167, 0.12)";
+      available.style.padding = "10px";
+      available.style.borderRadius = "6px";
+      break;
+    case 'booked':
+      available.textContent = "Currently booked";
+      available.style.backgroundColor = "rgba(247, 67, 67, 0.2)";
+      available.style.padding = "10px";
+      available.style.borderRadius = "6px";
+      break;
+    default:
+      available.textContent = "Status currently unavailable";
+      available.style.backgroundColor = "rgba(255, 200, 0, 0.2)";
+      available.style.padding = "10px";
+      available.style.borderRadius = "6px";
+      break;
+  }
+</script>
