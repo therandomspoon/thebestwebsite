@@ -33,10 +33,26 @@
       background: #e5e7eb;
       transition: width 900ms cubic-bezier(.2,.9,.2,1);
     }
+    .underlineb {
+      position: relative;
+      display: inline-block;
+      padding-bottom: 4px;
+      color: #e5e7eb;
+      text-decoration: none;
+    }
+    .underlineb::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      height: 2px;
+      width: 0;
+      background: #e5e7eb;
+      transition: width 0.5s ease;
+    }
     .underlineb:hover::after {
       width: 100%;
     }
-
     body.loaded .underlinea::after {
       width: 100%;
     }
