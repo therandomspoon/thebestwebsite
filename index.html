@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+  <script src="https://js.stripe.com/v3/"></script>
   <style>
     :root { --bg: #070b14; }
     #particles-js {
@@ -114,7 +115,7 @@
       background: #00f7a7;
       box-shadow: 0 0 8px #00f7a7;
     }
-    form input[type="submit"]:hover {
+    form input[type="button"] {
       margin-left: 15px;
       display: inline-flex;
       align-items: center;
@@ -127,6 +128,12 @@
       color: #5dadef;
       font-size: 1rem;
       box-shadow: 0 0 12px rgba(0, 123, 255, 0.3);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    form input[type="button"]:hover {
+      background: rgba(0, 123, 255, 0.2);
+      box-shadow: 0 0 16px rgba(0, 123, 255, 0.4);
     }
   </style>
 </head>
@@ -149,81 +156,39 @@
     <h1><span class="underline">Pricing</span></h1>
     <ul style="font-weight:400; font-size:1rem; line-height:1.5;">
       <li>
-        1 day - £0.50 GBP
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-          <input class="status" class="status" type="hidden" name="cmd" value="_xclick">
-          <input class="status" class="status" type="hidden" name="business" value="4YQUCK994GF58">
-          <input class="status" class="status" type="hidden" name="item_name" value="thebestwebsite.co.uk - 1 day rental">
-          <input class="status" class="status" type="hidden" name="amount" value="0.50">
-          <input class="status" class="status" type="hidden" name="currency_code" value="GBP">
-          <input class="status" class="status" type="hidden" name="return" value="https://thebestwebsite.co.uk/thank-you.html">
-          <input class="status" class="status" type="hidden" name="cancel_return" value="https://thebestwebsite.co.uk/cancelled.html">
-          <input class="status" class="status" type="submit" value="Buy Now">
+        <span class="underlineb">1 day - £0.50p GBP</span>
+        <form style="display: inline; margin-left: 10px;">
+          <input type="button" value="Buy Now" onclick="checkout('1-day', 50, '1 day rental')">
         </form>
       </li>
       <li>
-        7 days (1 Week) - £3.00 GBP
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-          <input class="status" class="status" type="hidden" name="cmd" value="_xclick">
-          <input class="status" class="status" type="hidden" name="business" value="4YQUCK994GF58">
-          <input class="status" class="status" type="hidden" name="item_name" value="thebestwebsite.co.uk - 7 day rental">
-          <input class="status" class="status" type="hidden" name="amount" value="3.00">
-          <input class="status" class="status" type="hidden" name="currency_code" value="GBP">
-          <input class="status" class="status" type="hidden" name="return" value="https://thebestwebsite.co.uk/thank-you.html">
-          <input class="status" class="status" type="hidden" name="cancel_return" value="https://thebestwebsite.co.uk/cancelled.html">
-          <input class="status" class="status" type="submit" value="Buy Now">
+        <span class="underlineb">7 days (1 Week) - £3.00 GBP (£0.50p discount!)</span>
+        <form style="display: inline; margin-left: 10px;">
+          <input type="button" value="Buy Now" onclick="checkout('7-days', 300, '7 day rental')">
         </form>
       </li>
       <li>
-        28 days (1 month) - £12.00 GBP
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-          <input class="status" class="status" type="hidden" name="cmd" value="_xclick">
-          <input class="status" class="status" type="hidden" name="business" value="4YQUCK994GF58">
-          <input class="status" class="status" type="hidden" name="item_name" value="thebestwebsite.co.uk - 28 day rental">
-          <input class="status" class="status" type="hidden" name="amount" value="12.00">
-          <input class="status" class="status" type="hidden" name="currency_code" value="GBP">
-          <input class="status" class="status" type="hidden" name="return" value="https://thebestwebsite.co.uk/thank-you.html">
-          <input class="status" class="status" type="hidden" name="cancel_return" value="https://thebestwebsite.co.uk/cancelled.html">
-          <input class="status" class="status" type="submit" value="Buy Now">
+        <span class="underlineb">28 days (1 month) - £12.00 GBP (£2.00p discount!)</span>
+        <form style="display: inline; margin-left: 10px;">
+          <input type="button" value="Buy Now" onclick="checkout('28-days', 1200, '28 day rental')">
         </form>
       </li>
       <li>
-        90 days (3 months) - £40.00 GBP
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-          <input class="status" class="status" type="hidden" name="cmd" value="_xclick">
-          <input class="status" class="status" type="hidden" name="business" value="4YQUCK994GF58">
-          <input class="status" class="status" type="hidden" name="item_name" value="thebestwebsite.co.uk - 90 day rental">
-          <input class="status" class="status" type="hidden" name="amount" value="40.00">
-          <input class="status" class="status" type="hidden" name="currency_code" value="GBP">
-          <input class="status" class="status" type="hidden" name="return" value="https://thebestwebsite.co.uk/thank-you.html">
-          <input class="status" class="status" type="hidden" name="cancel_return" value="https://thebestwebsite.co.uk/cancelled.html">
-          <input class="status" class="status" type="submit" value="Buy Now">
+        <span class="underlineb">90 days (3 months) - £40.00 GBP (£5.00p discount!)</span>
+        <form style="display: inline; margin-left: 10px;">
+          <input type="button" value="Buy Now" onclick="checkout('90-days', 4000, '90 day rental')">
         </form>
       </li>
       <li>
-        170 days (6 months) - £75.00 GBP
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-          <input class="status" class="status" type="hidden" name="cmd" value="_xclick">
-          <input class="status" class="status" type="hidden" name="business" value="4YQUCK994GF58">
-          <input class="status" class="status" type="hidden" name="item_name" value="thebestwebsite.co.uk - 170 day rental">
-          <input class="status" class="status" type="hidden" name="amount" value="75.00">
-          <input class="status" class="status" type="hidden" name="currency_code" value="GBP">
-          <input class="status" class="status" type="hidden" name="return" value="https://thebestwebsite.co.uk/thank-you.html">
-          <input class="status" class="status" type="hidden" name="cancel_return" value="https://thebestwebsite.co.uk/cancelled.html">
-          <input class="status" class="status" type="submit" value="Buy Now">
+        <span class="underlineb">170 days (6 months) - £75.00 GBP (£10.00p discount!)</span>
+        <form style="display: inline; margin-left: 10px;">
+          <input type="button" value="Buy Now" onclick="checkout('170-days', 7500, '170 day rental')">
         </form>
       </li>
       <li>
-        365 days (1 year) - £170.00 GBP
-        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-          <input class="status" class="status" type="hidden" name="cmd" value="_xclick">
-          <input class="status" class="status" type="hidden" name="business" value="4YQUCK994GF58">
-          <input class="status" class="status" type="hidden" name="item_name" value="thebestwebsite.co.uk - 365 day rental">
-          <input class="status" class="status" type="hidden" name="amount" value="170.00">
-          <input class="status" class="status" type="hidden" name="currency_code" value="GBP">
-          <input class="status" class="status" type="hidden" name="return" value="https://thebestwebsite.co.uk/thank-you.html">
-          <input class="status" class="status" type="hidden" name="cancel_return" value="https://thebestwebsite.co.uk/cancelled.html">
-          <input class="status" class="status" type="submit" value="Buy Now">
+        <span class="underlineb">365 days (1 year) - £170.00 GBP (£12.5p discount!)</span>
+        <form style="display: inline; margin-left: 10px;">
+          <input type="button" value="Buy Now" onclick="checkout('365-days', 17000, '365 day rental')">
         </form>
       </li>
     </ul>
@@ -249,7 +214,7 @@
     </p>
     <ol style="font-weight:400; font-size:1rem; line-height:1.5;">
       <li>Choose the rental duration and provide the IP address of your web server.</li>
-      <li>Send your rental request via PayPal to the attached account along with the payment for your chosen plan.</li>
+      <li>Click "Buy Now" to complete your payment securely through Stripe.</li>
       <li>If multiple orders are received at the same time, the order with the higher payment amount will be prioritized.</li>
       <li>An existing rental can be "bought out" if another order pays the sum of the current rental payment plus the new plan price. The original renter will be notified of the buyout.</li>
     </ol>
@@ -268,6 +233,26 @@
   </div>
 
   <script>
+    // Stripe configuration - Replace with your actual publishable key
+    const stripe = Stripe('pk_test_YOUR_STRIPE_PUBLISHABLE_KEY_HERE');
+
+    function checkout(priceId, amount, description) {
+      // In a real implementation, you would call your backend to create a checkout session
+      // This is a placeholder function that shows how it would work
+      stripe.redirectToCheckout({
+        sessionId: 'cs_test_session_id_here' // This would come from your backend
+      }).then(function (result) {
+        if (result.error) {
+          alert(result.error.message);
+        }
+      });
+
+      // Alternative: You could also use Stripe Elements for embedded checkout
+      // or redirect to a backend endpoint that creates the session
+      console.log(`Initiating checkout for ${description} - £${amount/100} GBP`);
+      alert(`Checkout integration needs backend setup. Product: ${description}, Price: £${amount/100}`);
+    }
+
     window.addEventListener("load", () => { document.body.classList.add("loaded"); });
 
     const status = 'free';
@@ -318,4 +303,7 @@
           onclick: { enable: true, mode: "push" }
         }
       },
-    </script>
+    });
+  </script>
+</body>
+</html>
