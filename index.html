@@ -9,24 +9,24 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
   <style>
-    :root {
-      --bg: #070b14;     
-    }
+    :root { --bg: #070b14; }
     #particles-js {
       position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       z-index: -1;
     }
     body {
-      color: #e5e7eb; 
+      color: #e5e7eb;
       background: radial-gradient(800px 600px at 120% 10%, #0f1f2d 0%, transparent 55%), var(--bg);
       margin: 0;
       padding: 0;
       overflow-x: hidden;
       overflow-y: auto;
+      font-family: "Montserrat", sans-serif;
     }
-
     .underlinea {
       position: relative;
       display: inline-block;
@@ -45,6 +45,7 @@
       background: #e5e7eb;
       transition: width 900ms cubic-bezier(.2,.9,.2,1);
     }
+    .underlinea:hover::after { width: 100%; }
     .underlineb {
       position: relative;
       display: inline-block;
@@ -63,22 +64,12 @@
       background: #e5e7eb;
       transition: width 0.5s ease;
     }
-    .underlineb:hover::after {
-      width: 100%;
-    }
-    body.loaded .underlinea::after {
-      width: 100%;
-    }
+    .underlineb:hover::after { width: 100%; }
+    body.loaded .underlinea::after { width: 100%; }
 
     header {
-      font-family: "Montserrat", sans-serif;
-      font-optical-sizing: auto;
       font-weight: 600;
-      font-style: normal;
-      margin-left: auto;
-      margin-right: auto;
-      margin-top: 56px;
-      margin-bottom: 56px;
+      margin: 56px auto;
       padding: 10px;
       max-width: 80%;
       background: rgba(255, 255, 255, 0.1);
@@ -89,30 +80,19 @@
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
     }
     .box {
-      font-family: "Montserrat", sans-serif;
-      font-optical-sizing: auto;
       font-weight: 600;
-      font-style: normal;
       background: rgba(255, 255, 255, 0.2);
       backdrop-filter: blur(2px) saturate(150%) contrast(120%) brightness(95%);
       -webkit-backdrop-filter: blur(2px) saturate(150%) contrast(120%) brightness(95%);
       border: 1px solid rgba(255, 255, 255, 0.2);
       border-radius: 10px;
       box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-      margin-bottom: 32px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: 32px auto;
       max-width: 75%;
-      padding: 5px
+      padding: 15px;
     }
-    .underline {
-      border-bottom: 5px solid #e5e7eb;
-      padding-bottom: 4px;
-      width: 100%;
-    }
-    h1 {
-      margin-left: 10px;
-    }
+    .underline { border-bottom: 5px solid #e5e7eb; padding-bottom: 4px; width: 100%; }
+    h1 { margin-left: 10px; }
     .status {
       margin-left: 15px;
       display: inline-flex;
@@ -124,7 +104,6 @@
       padding: 8px 16px;
       font-weight: 700;
       color: #6efacc;
-      font-family: "Montserrat", sans-serif;
       font-size: 1rem;
       box-shadow: 0 0 12px rgba(0, 247, 167, 0.3);
     }
@@ -135,39 +114,109 @@
       background: #00f7a7;
       box-shadow: 0 0 8px #00f7a7;
     }
-  
+    form input[type="submit"] {
+      margin-left:10px; padding:5px 10px; border:none; border-radius:5px;
+      background:#00f7a7; color:#070b14; font-weight:bold; cursor:pointer;
+    }
   </style>
 </head>
 <body>
   <div id="particles-js"></div>
+
   <header>
     <h1>Want to have TheBestWebsite? <span class="underlinea">Rent it!</span></h1>
   </header>
+
   <div class="box">
-    <h1>Thats right, you can have thebestwebsite.co.uk pointing to your website by renting it for however long you want!</h1>
+    <h1>That's right, you can have thebestwebsite.co.uk pointing to your website by renting it for however long you want!</h1>
   </div>
+
   <div class="box">
     <h1><span class="underline">Availability</span></h1>
-      <div id="status" class="status">
-        <span class="status-dot"></span>
-        <span id="status-text">Available Now!</span>
-      </div>
+    <div id="status" class="status">
+      <span class="status-dot"></span>
+      <span id="status-text">Available Now!</span>
+    </div>
   </div>
+
   <div class="box">
     <h1><span class="underline">Pricing</span></h1>
-    <ul>
-      <li><span class="underlineb">1 day - £0.50p GBP</span></li>
-      <li><span class="underlineb">7 days (1 Week) - £3.00 GBP (£0.50p discount!)</span></li>
-      <li><span class="underlineb">28 days (1 month) - £12.00 GBP (£2.00p discount!)</span></li>
-      <li><span class="underlineb">90 days (3 months) - £40.00 GBP (£5.00p discount!)</span></li>
-      <li><span class="underlineb">170 days (6 months) - £75.00 GBP (£10.00p discount!)</span></li>
-      <li><span class="underlineb">365 days (1 year) - £170.00 GBP (£12.5p discount!)</span></li>
+    <ul style="font-weight:400; font-size:1rem; line-height:1.5;">
+      <li>
+        1 day - £0.50 GBP
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="your-paypal-email@example.com">
+          <input type="hidden" name="item_name" value="thebestwebsite.co.uk - 1 day rental">
+          <input type="hidden" name="amount" value="0.50">
+          <input type="hidden" name="currency_code" value="GBP">
+          <input type="submit" value="Pay Now">
+        </form>
+      </li>
+      <li>
+        7 days (1 Week) - £3.00 GBP
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="your-paypal-email@example.com">
+          <input type="hidden" name="item_name" value="thebestwebsite.co.uk - 7 day rental">
+          <input type="hidden" name="amount" value="3.00">
+          <input type="hidden" name="currency_code" value="GBP">
+          <input type="submit" value="Pay Now">
+        </form>
+      </li>
+      <li>
+        28 days (1 month) - £12.00 GBP
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="your-paypal-email@example.com">
+          <input type="hidden" name="item_name" value="thebestwebsite.co.uk - 28 day rental">
+          <input type="hidden" name="amount" value="12.00">
+          <input type="hidden" name="currency_code" value="GBP">
+          <input type="submit" value="Pay Now">
+        </form>
+      </li>
+      <li>
+        90 days (3 months) - £40.00 GBP
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="your-paypal-email@example.com">
+          <input type="hidden" name="item_name" value="thebestwebsite.co.uk - 90 day rental">
+          <input type="hidden" name="amount" value="40.00">
+          <input type="hidden" name="currency_code" value="GBP">
+          <input type="submit" value="Pay Now">
+        </form>
+      </li>
+      <li>
+        170 days (6 months) - £75.00 GBP
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="your-paypal-email@example.com">
+          <input type="hidden" name="item_name" value="thebestwebsite.co.uk - 170 day rental">
+          <input type="hidden" name="amount" value="75.00">
+          <input type="hidden" name="currency_code" value="GBP">
+          <input type="submit" value="Pay Now">
+        </form>
+      </li>
+      <li>
+        365 days (1 year) - £170.00 GBP
+        <form action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+          <input type="hidden" name="cmd" value="_xclick">
+          <input type="hidden" name="business" value="your-paypal-email@example.com">
+          <input type="hidden" name="item_name" value="thebestwebsite.co.uk - 365 day rental">
+          <input type="hidden" name="amount" value="170.00">
+          <input type="hidden" name="currency_code" value="GBP">
+          <input type="submit" value="Pay Now">
+        </form>
+      </li>
     </ul>
   </div>
+
   <div class="box">
     <h1><span class="underline">Legal Disclaimer</span></h1>
-    <p style="font-weight:400; font-size: 1rem; line-height:1.5;">By renting <strong>thebestwebsite.co.uk</strong>, you expressly agree to the following terms:</p>
-    <ul style="font-weight:400; font-size: 1rem; line-height:1.5;">
+    <p style="font-weight:400; font-size:1rem; line-height:1.5;">
+      By renting <strong>thebestwebsite.co.uk</strong>, you expressly agree to the following terms:
+    </p>
+    <ul style="font-weight:400; font-size:1rem; line-height:1.5;">
       <li>All rental payments are <strong>final and non-refundable</strong>.</li>
       <li>The domain holder is <strong>not responsible</strong> for the content, accuracy, legality, or availability of any website or service to which the domain is directed.</li>
       <li>You agree to use the domain in full compliance with all applicable laws, regulations, and third-party rights. Any misuse is solely your responsibility.</li>
@@ -175,15 +224,39 @@
       <li>Rental of the domain does not confer any ownership rights; the domain remains the sole property of the holder.</li>
     </ul>
   </div>
+
+  <div class="box">
+    <h1><span class="underline">Rent It!</span></h1>
+    <p style="font-weight:400; font-size:1rem; line-height:1.5;">
+      You can rent <strong>thebestwebsite.co.uk</strong> by following these steps:
+    </p>
+    <ol style="font-weight:400; font-size:1rem; line-height:1.5;">
+      <li>Choose the rental duration and provide the IP address of your web server.</li>
+      <li>Send your rental request via PayPal to the attached account along with the payment for your chosen plan.</li>
+      <li>If multiple orders are received at the same time, the order with the higher payment amount will be prioritized.</li>
+      <li>An existing rental can be "bought out" if another order pays the sum of the current rental payment plus the new plan price. The original renter will be notified of the buyout.</li>
+    </ol>
+    <p style="font-weight:400; font-size:1rem; line-height:1.5;">
+      <strong>Important:</strong> By renting the domain, you agree that:
+    </p>
+    <ul style="font-weight:400; font-size:1rem; line-height:1.5;">
+      <li>The domain remains the property of the holder; no ownership rights are transferred.</li>
+      <li>You are solely responsible for the content hosted on your web server and compliance with applicable laws.</li>
+      <li>All payments are final and non-refundable.</li>
+      <li>The domain holder is not responsible for any damages, losses, or disputes arising from your use of the domain.</li>
+    </ul>
+    <p style="font-weight:400; font-size:1rem; line-height:1.5;">
+      For questions or clarifications, please <a href="mailto:your-email@example.com">email me</a>.
+    </p>
+  </div>
+
   <script>
-    window.addEventListener("load", () => {
-      document.body.classList.add("loaded");
-    });
+    window.addEventListener("load", () => { document.body.classList.add("loaded"); });
 
     const status = 'free';
-    let statusBox = document.getElementById("status");
-    let statusText = document.getElementById("status-text");
-    let dot = statusBox.querySelector(".status-dot");
+    const statusBox = document.getElementById("status");
+    const statusText = document.getElementById("status-text");
+    const dot = statusBox.querySelector(".status-dot");
 
     switch (status) {
       case 'free':
@@ -214,59 +287,18 @@
 
     particlesJS('particles-js', {
       particles: {
-        number: {
-          value: 50,
-          density: {
-            enable: true,
-            value_area: 800
-          }
-        },
-        color: {
-          value: "#ffffff"
-        },
-        shape: {
-          type: "circle",
-        },
-        opacity: {
-          value: 0.5,
-          random: true,
-          anim: {
-            enable: true,
-            speed: 1,
-            opacity_min: 0.1,
-            sync: false
-          }
-        },
-        size: {
-          value: 3,
-          random: true,
-          anim: {
-            enable: true,
-            speed: 3,
-            size_min: 0.1,
-            sync: false
-          }
-        },
-        move: {
-          enable: true,
-          speed: 1,
-          direction: "random",
-          random: true,
-          straight: false,
-          out_mode: "out"
-        }
+        number: { value: 50, density: { enable: true, value_area: 800 } },
+        color: { value: "#ffffff" },
+        shape: { type: "circle" },
+        opacity: { value: 0.5, random: true, anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false } },
+        size: { value: 3, random: true, anim: { enable: true, speed: 3, size_min: 0.1, sync: false } },
+        move: { enable: true, speed: 1, direction: "random", random: true, straight: false, out_mode: "out" }
       },
       interactivity: {
         detect_on: "window",
         events: {
-          onhover: {
-            enable: true,
-            mode: "repulse"
-          },
-          onclick: {
-            enable: true,
-            mode: "push"
-          }
+          onhover: { enable: true, mode: "repulse" },
+          onclick: { enable: true, mode: "push" }
         }
       },
       retina_detect: true
